@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluff Stuff | Custom Gift Hampers for Every Occasion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #E83E8C;
+            --secondary-color: #6EC5E9;
+            --accent-color: #FFB400;
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --light-text: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+        }
+        
+        /* Modern Navbar */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background-color: rgba(18, 18, 18, 0.8);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand img {
+            height: 60px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #6EC5E9 0%, #E83E8C 100%);
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23000000" fill-opacity="0.2" d="M0,96L48,128C96,160,192,224,288,240C384,256,480,224,576,197.3C672,171,768,149,864,154.7C960,160,1056,192,1152,186.7C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom center;
+            background-size: 100%;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Card Designs */
+        .hamper-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: var(--card-bg);
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .hamper-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(232, 62, 140, 0.3);
+        }
+        
+        .hamper-card img {
+            transition: all 0.5s ease;
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+        
+        .hamper-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        /* Buttons */
+        .btn-custom {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 30px;
+            padding: 10px 25px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(232, 62, 140, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+        
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(232, 62, 140, 0.4);
+            color: white;
+        }
+        
+        .btn-custom:hover::before {
+            left: 100%;
+        }
+        
+        /* Customization Steps */
+        .step-card {
+            padding: 30px;
+            border-radius: 16px;
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            height: 100%;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            z-index: -1;
+            transition: all 0.3s ease;
+        }
+        
+        .step-card:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        /* Testimonial Section */
+        .testimonial-card {
+            padding: 30px;
+            border-radius: 16px;
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(232, 62, 140, 0.1);
+            font-family: Georgia, serif;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-control {
+            border-radius: 8px;
+            padding: 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--light-text);
+        }
+        
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.2);
+            border-color: var(--primary-color);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            color: white;
+            padding: 60px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            text-decoration: none;
+            transform: translateX(5px);
+        }
+        
+        /* Modal customization */
+        .modal-content {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card-header {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .table {
+            color: var(--light-text);
+        }
+        
+        /* AOS Custom Animations */
+        [data-aos] {
+            pointer-events: none;
+        }
+        
+        [data-aos].aos-animate {
+            pointer-events: auto;
+        }
+        
+        /* Background color override for sections */
+        .bg-light {
+            background-color: var(--card-bg) !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="logo4.png" alt="Fluff Stuff Logo" class="animate__animated animate__fadeIn">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#hampers">Hampers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#customize">Customize</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content" data-aos="fade-right" data-aos-duration="1000">
+                    <h1 class="display-4 text-white fw-bold mb-4 animate__animated animate__fadeInUp">Create Memorable Gifting Experiences</h1>
+                    <p class="lead text-white mb-4 animate__animated animate__fadeInUp animate__delay-1s">Handcrafted hampers tailored to your loved ones' preferences for every special occasion</p>
+                    <a href="#customize" class="btn btn-custom btn-lg animate__animated animate__fadeInUp animate__delay-2s">Design Your Hamper</a>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
+                    <img src="demo.4.jpg" alt="Mother's Day Hamper" class="img-fluid rounded-3 shadow-lg animate__animated animate__zoomIn">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Hampers -->
+    <section id="hampers" class="py-5">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Our Signature Collections</h2>
+            <div class="row g-4">
+                <!-- Hamper 1 -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="hamper-card h-100">
+                        <img src="demo.2.jpg" class="card-img-top" alt="Mother's Day Hamper">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Mother's Day Bliss</h5>
+                            <p class="text-muted">From ₹1,850</p>
+                            <p class="card-text">Celebrate the special mom in your life with our curated Mother's Day hamper featuring custom banners and personalized gifts.</p>
+                            <button class="btn btn-custom customize-btn" data-hamper="mothers-day">Customize Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Hamper 2 -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="hamper-card h-100">
+                        <img src="demo.3.jpg" class="card-img-top" alt="Birthday Hamper">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Birthday Celebration</h5>
+                            <p class="text-muted">From ₹1,950</p>
+                            <p class="card-text">Make their special day unforgettable with our birthday hamper featuring personalized banners, photo frames, and premium gifts.</p>
+                            <button class="btn btn-custom customize-btn" data-hamper="birthday">Customize Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Hamper 3 -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="hamper-card h-100">
+                        <img src="demo.1.jpg" class="card-img-top" alt="Anniversary Hamper">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Love & Romance</h5>
+                            <p class="text-muted">From ₹2,250</p>
+                            <p class="card-text">Celebrate your special relationship with our romantic hamper featuring custom messages, jewelry, and heartfelt keepsakes.</p>
+                            <button class="btn btn-custom customize-btn" data-hamper="romance">Customize Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customization Process -->
+    <section id="customize" class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 fw-bold text-white" data-aos="fade-up">Create Your Perfect Gift in 3 Steps</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3 class="mb-3">Choose Your Packaging</h3>
+                        <p>Select the perfect presentation box or basket with your preferred color scheme and decorative elements.</p>
+                        <p>We offer elegant boxes, rustic baskets, and eco-friendly options to match any occasion or style preference.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3 class="mb-3">Select Your Items</h3>
+                        <p>Fill your hamper with handpicked treasures from our extensive collection of premium products.</p>
+                        <p>Mix and match items across categories, with options for all dietary preferences and interests.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3 class="mb-3">Add Personal Touches</h3>
+                        <p>Make your gift truly unique with custom banners, handwritten notes, and personalized elements.</p>
+                        <p>Add monogrammed items, photographs, or custom labels that reflect your recipient's personality.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5" data-aos="fade-up">
+                <button id="startCustomizeBtn" class="btn btn-custom btn-lg">Start Creating Your Hamper</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="fw-bold mb-4">The Fluff Stuff Story</h2>
+                    <p>Fluff Stuff was born from a simple yet profound realization: the most meaningful gifts are those that truly reflect the recipient's personality and the unique relationship you share with them.</p>
+                    <p>In 2023, our founder Maya was searching for the perfect gift for her mother's milestone birthday. After hours of browsing generic pre-made gift baskets, she realized none of them captured her mother's vibrant personality or favorite things.</p>
+                    <p>That night, she created a completely personalized hamper filled with her mother's favorite teas, books, and comfort items. When her mother burst into tears of joy upon receiving this thoughtfully curated gift, Maya knew she had discovered something special.</p>
+                    <p>Within months, Fluff Stuff was launched with a mission to bring that same joy to gift-giving across India, transforming ordinary moments into extraordinary memories through thoughtfully customized gift experiences.</p>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="position-relative">
+                        <img src="logo4.png" alt="About Fluff Stuff" class="img-fluid rounded-3 shadow-lg">
+                        <div class="position-absolute" style="bottom: -20px; right: -20px; z-index: -1; width: 80%; height: 80%; border-radius: 16px; background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); opacity: 0.3;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 fw-bold text-white" data-aos="fade-up">What Our Customers Say</h2>
+            <div class="row">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="ms-3">
+                                <h5 class="mb-1">Priya Sharma</h5>
+                                <p class="text-muted mb-0">Delhi</p>
+                            </div>
+                        </div>
+                        <p>"I ordered a birthday hamper for my best friend and was blown away by the quality and presentation! The customization options allowed me to include all her favorites, and she absolutely loved it."</p>
+                        <div class="mt-3 text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="ms-3">
+                                <h5 class="mb-1">Raj Malhotra</h5>
+                                <p class="text-muted mb-0">Mumbai</p>
+                            </div>
+                        </div>
+                        <p>"I needed corporate gifts for important clients and was running out of time. Fluff Stuff not only delivered exceptional quality hampers with our company branding, but they also managed same-day delivery!"</p>
+                        <div class="mt-3 text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="ms-3">
+                                <h5 class="mb-1">Anita Desai</h5>
+                                <p class="text-muted mb-0">Bangalore</p>
+                            </div>
+                        </div>
+                        <p>"The Self-Care Sanctuary hamper I customized for my sister after she had her baby was perfect in every way. She said it was the most thoughtful gift she received and exactly what she needed."</p>
+                        <div class="mt-3 text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us -->
+    <section id="contact" class="py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-6 mx-auto" data-aos="fade-up">
+                    <div class="contact-form">
+                        <h2 class="text-center mb-4 fw-bold">Get in Touch</h2>
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" id="email" placeholder="Email Address" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" class="form-control" id="phone" placeholder="Phone Number (Optional)">
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-control" id="subject" required>
+                                    <option value="" selected disabled>Select Subject</option>
+                                    <option value="General Inquiry">General Inquiry</option>
+                                    <option value="Order Support">Order Support</option>
+                                    <option value="Customization Help">Customization Help</option>
+                                    <option value="Feedback">Feedback</option>
+                                    <option value="Bulk/Corporate Orders">Bulk/Corporate Orders</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" id="message" rows="4" placeholder="Your Message" required></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-custom btn-lg w-100">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <img src="https://i.ibb.co/vVbHMsZ/fluff-stuff-logo.jpg" alt="Fluff Stuff Logo" height="60" class="mb-4">
+                    <p>Making gifting personal since 2023. We create customized gift hampers for every occasion to make your special moments truly unforgettable.</p>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#hampers">Hampers</a></li>
+                        <li class="mb-2"><a href="#customize">Customize</a></li>
+                        <li class="mb-2"><a href="#about">About Us</a></li>
+                        <li class="mb-2"><a href="#testimonials">Testimonials</a></li>
+                        <li class="mb-2"><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5 class="mb-4">Contact Info</h5>
+                    <p class="mb-2"><i class="fas fa-envelope me-2"></i> hello@fluffstuff.in</p>
+                    <p class="mb-2"><i class="fas fa-phone me-2"></i> +91 98765 43210</p>
+                    <p class="mb-2"><i class="fas fa-clock me-2"></i> Mon-Sat, 9AM-7PM</p>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5 class="mb-4">Newsletter</h5>
+                    <p>Subscribe for special offers and updates</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your Email" aria-label="Email" aria-describedby="subscribe-btn">
+                        <button class="btn btn-custom" type="button" id="subscribe-btn">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="row">
+                <div class="col-lg-6 mb-3 mb-lg-0">
+                    <p class="mb-0">&copy; 2025 Fluff Stuff. All Rights Reserved.</p>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Customize Modal -->
+    <div class="modal fade" id="customizeModal" tabindex="-1" aria-labelledby="customizeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="customizeModalLabel">Customize Your Hamper</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4 class="mb-4">Step 1: Choose Your Packaging</h4>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-4">
+                                        <div class="form-check card p-3 border">
+                                            <input class="form-check-input" type="radio" name="packaging" id="box" checked>
+                                            <label class="form-check-label" for="box">
+                                                Elegant Box
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-check card p-3 border">
+                                            <input class="form-check-input" type="radio" name="packaging" id="basket">
+                                            <label class="form-check-label" for="basket">
+                                                Rustic Basket
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-check card p-3 border">
+                                            <input class="form-check-input" type="radio" name="packaging" id="eco">
+                                            <label class="form-check-label" for="eco">
+                                                Eco-Friendly Package
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <h4 class="mb-4">Step 2: Select Your Items</h4>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-6">
+                                        <select class="form-select mb-3" id="categorySelect">
+                                            <option selected>Choose Category</option>
+                                            <option value="chocs">Chocolates & Sweets</option>
+                                            <option value="self">Self-Care Items</option>
+                                            <option value="decor">Decorative Items</option>
+                                            <option value="accessories">Accessories</option>
+                                        </select>
+                                        <div id="itemList" class="border p-3 rounded" style="height: 250px; overflow-y: auto; background: rgba(255, 255, 255, 0.05);">
+                                            <p class="text-center text-muted mt-5">Select a category to view items</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5>Selected Items</h5>
+                                        <div id="selectedItems" class="border p-3 rounded" style="height: 300px; overflow-y: auto; background: rgba(255, 255, 255, 0.05);">
+                                            <p class="text-center text-muted mt-5">No items selected yet</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <h4 class="mb-4">Step 3: Add Personal Touches</h4>
+                                <div class="mb-3">
+                                    <label for="personalMessage" class="form-label">Add a Personal Message</label>
+                                    <textarea class="form-control" id="personalMessage" rows="3" placeholder="Your heartfelt message here..."></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Add Custom Banner Text</label>
+                                    <input type="text" class="form-control" id="bannerText" placeholder="e.g., HAPPY BIRTHDAY">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-header bg-primary text-white">
+                                        Your Hamper Preview
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="hamperPreview" class="border rounded p-4 text-center" style="background: rgba(255, 255, 255, 0.05);">
+                                            <img src="demo.jpg" alt="Hamper Preview" class="img-fluid mb-3">
+                                            <h5 class="preview-title">Your Custom Hamper</h5>
+                                            <p class="preview-items">No items selected yet</p>
+                                            <p class="preview-banner fw-bold"></p>
+                                        </div>
+                                        <div class="mt-4">
+                                            <h5>Price Breakdown</h5>
+                                            <table class="table table-sm">
+                                                <tr>
+                                                    <td>Base Price</td>
+                                                    <td class="text-end">₹1,500</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Selected Items</td>
+                                                    <td class="text-end" id="itemsPrice">₹0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Customization</td>
+                                                    <td class="text-end">₹350</td>
+                                                </tr>
+                                                <tr class="fw-bold">
+                                                    <td>Total</td>
+                                                    <td class="text-end" id="totalPrice">₹1,850</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-custom" id="addToCartBtn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="successToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-success text-white">
+                <strong class="me-auto">Success</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" style="background: var(--card-bg); color: var(--light-text);">
+                Your hamper has been added to cart!
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/3a35779e5d.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Initialize Customize Modal
+        const customizeModal = new bootstrap.Modal(document.getElementById('customizeModal'));
+        
+        // Customize buttons event listeners
+        document.querySelectorAll('.customize-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const hamperType = this.getAttribute('data-hamper');
+                document.getElementById('customizeModalLabel').textContent = `Customize Your ${hamperType.charAt(0).toUpperCase() + hamperType.slice(1)} Hamper`;
+                customizeModal.show();
+            });
+        });
+        
+        // Start customize button
+        document.getElementById('startCustomizeBtn').addEventListener('click', function() {
+            customizeModal.show();
+        });
+        
+        // Item selection logic
+        const categorySelect = document.getElementById('categorySelect');
+        const itemList = document.getElementById('itemList');
+        const selectedItems = document.getElementById('selectedItems');
+        const itemsPrice = document.getElementById('itemsPrice');
+        const totalPrice = document.getElementById('totalPrice');
+        const previewItems = document.querySelector('.preview-items');
+        
+        // Item categories
+        const itemCategories = {
+            chocs: [
+                {name: 'Premium Chocolate Box', price: 450},
+                {name: 'Assorted Macarons', price: 350},
+                {name: 'Gourmet Cookies', price: 280},
+                {name: 'Ferrero Rocher Set', price: 400}
+            ],
+            self: [
+                {name: 'Scented Candle', price: 320},
+                {name: 'Bath Bombs Set', price: 380},
+                {name: 'Face Mask Collection', price: 450},
+                {name: 'Essential Oil Diffuser', price: 650}
+            ],
+            decor: [
+                {name: 'Photo Frame', price: 280},
+                {name: 'Mini Plush Toy', price: 250},
+                {name: 'Decorative Lights', price: 350},
+                {name: 'Artificial Plants', price: 300}
+            ],
+            accessories: [
+                {name: 'Handcrafted Earrings', price: 550},
+                {name: 'Silk Scarf', price: 450},
+                {name: 'Leather Journal', price: 380},
+                {name: 'Beaded Bracelet', price: 320}
+            ]
+        };
+        
+        // Selected items array
+        let cartItems = [];
+        
+        // Update price calculations
+        function updatePrice() {
+            let itemTotal = 0;
+            cartItems.forEach(item => {
+                itemTotal += item.price;
+            });
+            
+            itemsPrice.textContent = `₹${itemTotal}`;
+            totalPrice.textContent = `₹${1500 + 350 + itemTotal}`;
+        }
+        
+        // Update preview
+        function updatePreview() {
+            if (cartItems.length > 0) {
+                let itemNames = cartItems.map(item => item.name).join(', ');
+                previewItems.textContent = itemNames;
+            } else {
+                previewItems.textContent = 'No items selected yet';
+            }
+            
+            // Update banner text
+            const bannerText = document.getElementById('bannerText').value;
+            document.querySelector('.preview-banner').textContent = bannerText;
+        }
+        
+        // Load items for selected category
+        categorySelect.addEventListener('change', function() {
+            const category = this.value;
+            if (category === 'Choose Category') {
+                itemList.innerHTML = '<p class="text-center text-muted mt-5">Select a category to view items</p>';
+                return;
+            }
+            
+            itemList.innerHTML = '';
+            itemCategories[category].forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'form-check mb-2';
+                itemElement.innerHTML = `
+                    <input class="form-check-input" type="checkbox" id="item${index}" data-name="${item.name}" data-price="${item.price}">
+                    <label class="form-check-label d-flex justify-content-between" for="item${index}">
+                        <span>${item.name}</span>
+                        <span>₹${item.price}</span>
+                    </label>
+                `;
+                itemList.appendChild(itemElement);
+                
+                // Add event listener to item checkbox
+                const checkbox = itemElement.querySelector(`#item${index}`);
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        // Add item to cart
+                        cartItems.push({
+                            name: this.getAttribute('data-name'),
+                            price: parseInt(this.getAttribute('data-price'))
+                        });
+                        
+                        // Update selected items display
+                        if (selectedItems.querySelector('.text-muted')) {
+                            selectedItems.innerHTML = '';
+                        }
+                        
+                        const selectedItem = document.createElement('div');
+                        selectedItem.className = 'd-flex justify-content-between align-items-center mb-2';
+                        selectedItem.innerHTML = `
+                            <span>${this.getAttribute('data-name')}</span>
+                            <span>₹${this.getAttribute('data-price')}</span>
+                            <button class="btn btn-sm btn-danger remove-item" data-index="${cartItems.length - 1}">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        `;
+                        selectedItems.appendChild(selectedItem);
+                        
+                        // Add event listener to remove button
+                        selectedItem.querySelector('.remove-item').addEventListener('click', function() {
+                            const index = parseInt(this.getAttribute('data-index'));
+                            cartItems.splice(index, 1);
+                            this.closest('div').remove();
+                            
+                            // Re-index remove buttons
+                            document.querySelectorAll('.remove-item').forEach((btn, idx) => {
+                                btn.setAttribute('data-index', idx);
+                            });
+                            
+                            if (cartItems.length === 0) {
+                                selectedItems.innerHTML = '<p class="text-center text-muted mt-5">No items selected yet</p>';
+                            }
+                            
+                            // Update checkbox state
+                            checkbox.checked = false;
+                            
+                            // Update price and preview
+                            updatePrice();
+                            updatePreview();
+                        });
+                    } else {
+                        // Find and remove item from cart
+                        const itemName = this.getAttribute('data-name');
+                        const itemIndex = cartItems.findIndex(item => item.name === itemName);
+                        if (itemIndex !== -1) {
+                            cartItems.splice(itemIndex, 1);
+                            
+                            // Update selected items display
+                            selectedItems.querySelectorAll('.remove-item').forEach(btn => {
+                                if (parseInt(btn.getAttribute('data-index')) === itemIndex) {
+                                    btn.closest('div').remove();
+                                }
+                            });
+                            
+                            // Re-index remove buttons
+                            document.querySelectorAll('.remove-item').forEach((btn, idx) => {
+                                btn.setAttribute('data-index', idx);
+                            });
+                            
+                            if (cartItems.length === 0) {
+                                selectedItems.innerHTML = '<p class="text-center text-muted mt-5">No items selected yet</p>';
+                            }
+                        }
+                    }
+                    
+                    // Update price and preview
+                    updatePrice();
+                    updatePreview();
+                });
+            });
+        });
+        
+        // Banner text preview
+        document.getElementById('bannerText').addEventListener('input', function() {
+            updatePreview();
+        });
+        
+        // Add to cart button
+        document.getElementById('addToCartBtn').addEventListener('click', function() {
+            // Show success toast
+            const successToast = new bootstrap.Toast(document.getElementById('successToast'));
+            successToast.show();
+            
+            // Close modal after short delay
+            setTimeout(() => {
+                customizeModal.hide();
+            }, 1000);
+            
+            // Reset form (in real implementation, you would save the cart data)
+            cartItems = [];
+            selectedItems.innerHTML = '<p class="text-center text-muted mt-5">No items selected yet</p>';
+            document.getElementById('bannerText').value = '';
+            document.getElementById('personalMessage').value = '';
+            document.getElementById('categorySelect').value = 'Choose Category';
+            itemList.innerHTML = '<p class="text-center text-muted mt-5">Select a category to view items</p>';
+            updatePrice();
+            updatePreview();
+        });
+    </script>
+</body>
+</html>
